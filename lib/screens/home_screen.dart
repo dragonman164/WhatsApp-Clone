@@ -11,6 +11,19 @@ class WhatsAppHome extends StatefulWidget {
 
 class _WhatsAppHomeState extends State<WhatsAppHome> with SingleTickerProviderStateMixin{
 
+  IconData _currentButton;
+
+  void changeButton(){
+   setState(() {
+     switch(_tabController.index){
+       case 1: _currentButton=Icons.message; break;
+       case 2: _currentButton=Icons.camera_alt ; break;
+       case 3: _currentButton=Icons.add_call; break;
+     }
+   });
+
+  }
+
   TabController _tabController;
 
   @override
@@ -18,6 +31,7 @@ class _WhatsAppHomeState extends State<WhatsAppHome> with SingleTickerProviderSt
     // TODO: implement initState
     super.initState();
     _tabController = TabController(vsync: this,length: 4);
+    _tabController.addListener(changeButton);
 
   }
 
@@ -33,17 +47,28 @@ class _WhatsAppHomeState extends State<WhatsAppHome> with SingleTickerProviderSt
           tabs: [
             Tab(icon: Icon(Icons.camera_alt),),
             Tab(text: "CHATS",),
-            Tab(text: "CALLS",),
             Tab(text: "STATUS",),
+            Tab(text: "CALLS",),
 
           ],
         ),
         actions: [
-          Icon(Icons.search),
+          IconButton(
+              icon: Icon(Icons.search),
+              onPressed: () {
+                print('Search Button Pressed');
+              }
+          ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 5.0),
           ),
-          Icon(Icons.more_vert),
+        IconButton(
+          icon: Icon(Icons.more_vert),
+          onPressed: () {
+
+            print('Menu Button Pressed');
+          }
+        )
 
         ],
       ),
@@ -52,14 +77,16 @@ class _WhatsAppHomeState extends State<WhatsAppHome> with SingleTickerProviderSt
         children: [
           CameraScreen(),
           ChatScreen(),
-          CallsScreen(),
           StatusScreen(),
+          CallsScreen(),
+
+
 
         ],
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).accentColor,
-        child: Icon(Icons.message,color: Colors.white,),
+        child: Icon(_currentButton,color: Colors.white,),
         onPressed: ()=>print('Open Chats'),
       ),
     );
