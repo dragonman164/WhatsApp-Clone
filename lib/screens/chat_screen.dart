@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:whatsapp_clone/screens/home_screen.dart';
 import '../models/chat_model.dart';
+import '../screens/chat_with_person_screen.dart';
+
 
 class ChatScreen extends StatefulWidget {
   @override
@@ -37,6 +40,9 @@ class _ChatScreenState extends State<ChatScreen> {
 
 
             ),
+            onTap: () {
+              Navigator.of(context).pushNamed(ChatWithPerson.routeName);
+            },
           ),
         ],
       ) ,

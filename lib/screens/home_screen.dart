@@ -5,6 +5,7 @@ import '../screens/chat_screen.dart';
 import '../screens/status_screen.dart';
 
 class WhatsAppHome extends StatefulWidget {
+  static String routeName = '/';
   @override
   _WhatsAppHomeState createState() => _WhatsAppHomeState();
 }
@@ -21,6 +22,12 @@ class _WhatsAppHomeState extends State<WhatsAppHome> with SingleTickerProviderSt
        case 3: _currentButton=Icons.add_call; break;
      }
    });
+
+  }
+  void _popupMenu () {
+    setState(() {
+
+    });
 
   }
 
@@ -62,13 +69,27 @@ class _WhatsAppHomeState extends State<WhatsAppHome> with SingleTickerProviderSt
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 5.0),
           ),
-        IconButton(
-          icon: Icon(Icons.more_vert),
-          onPressed: () {
+    PopupMenuButton(
+      icon: Icon(Icons.more_vert),
+    itemBuilder: (context) => <PopupMenuItem<String>>[
+     PopupMenuItem<String>(
+    child: Text('New group'), ),
+     PopupMenuItem<String>(
+    child:  Text('New broadcast'),
+     ),
+      PopupMenuItem<String>(
+        child:  Text('WhatsApp Web'),
+      ),
+      PopupMenuItem<String>(
+        child:  Text('Starred Messages'),
+      ),
+      PopupMenuItem<String>(
+        child:  Text('Settings'),
+      ),
+    ],
 
-            print('Menu Button Pressed');
-          }
-        )
+
+    )
 
         ],
       ),
