@@ -13,6 +13,8 @@ class WhatsAppHome extends StatefulWidget {
 class _WhatsAppHomeState extends State<WhatsAppHome> with SingleTickerProviderStateMixin{
 
   IconData _currentButton;
+  TextEditingController _textEditingController;
+  var _searchPressed = false;
 
   void changeButton(){
    setState(() {
@@ -22,12 +24,6 @@ class _WhatsAppHomeState extends State<WhatsAppHome> with SingleTickerProviderSt
        case 3: _currentButton=Icons.add_call; break;
      }
    });
-
-  }
-  void _popupMenu () {
-    setState(() {
-
-    });
 
   }
 
@@ -41,11 +37,35 @@ class _WhatsAppHomeState extends State<WhatsAppHome> with SingleTickerProviderSt
     _tabController.addListener(changeButton);
 
   }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _textEditingController.dispose();
+    _tabController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: _searchPressed?AppBar(
+        backgroundColor: Colors.white,
+        title: TextField(
+          controller: _textEditingController,
+          cursorColor: Theme.of(context).primaryColor,
+          decoration: InputDecoration(
+            labelText: 'Search...',
+          ),
+        ),
+        leading: IconButton(icon: Icon(Icons.arrow_back),
+        onPressed: () {
+          _searchPressed = false;
+          setState(() {
+
+          });
+        },
+        color: Theme.of(context).primaryColor,),
+      ):AppBar(
         title: Text("WhatsApp"),
         elevation: 0.7,
         bottom: TabBar(
@@ -63,7 +83,8 @@ class _WhatsAppHomeState extends State<WhatsAppHome> with SingleTickerProviderSt
           IconButton(
               icon: Icon(Icons.search),
               onPressed: () {
-                print('Search Button Pressed');
+                _searchPressed = true;
+                setState(() {});
               }
           ),
           Padding(
@@ -108,7 +129,7 @@ class _WhatsAppHomeState extends State<WhatsAppHome> with SingleTickerProviderSt
       floatingActionButton: FloatingActionButton(
         backgroundColor: Theme.of(context).accentColor,
         child: Icon(_currentButton,color: Colors.white,),
-        onPressed: ()=>print('Open Chats'),
+        onPressed: ()=>print('Floating Action Button Pressed'),
       ),
     );
   }

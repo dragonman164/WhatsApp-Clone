@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'screens/chat_with_person_screen.dart';
 import 'screens/home_screen.dart';
 
-void main () => runApp(new MyApp());
+void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
   @override
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       initialRoute: WhatsAppHome.routeName,
       routes: {
         WhatsAppHome.routeName: (context) => WhatsAppHome(),
-        ChatWithPerson.routeName: (context)=> ChatWithPerson(),
+        ChatWithPerson.routeName: (context) => ChatWithPerson(),
       },
     );
   }
