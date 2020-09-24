@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/chat_widget.dart';
 import '../models/chat_model.dart';
+import 'dart:math' show pi;
 
 class ChatWithPerson extends StatefulWidget {
   static String routeName = '/chatWithPerson';
@@ -39,53 +40,90 @@ class _ChatWithPersonState extends State<ChatWithPerson> {
     receiveArguments(context);
     return Scaffold(
       appBar: AppBar(
-        title: CircleAvatar(
-          radius: 20,
-          child: Icon(
-            Icons.person,
-            color: Colors.white,
-            size: 20,
+        toolbarHeight: 55,
+        automaticallyImplyLeading: false,
+        title: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+          GestureDetector(
+              onTap: () => Navigator.pop(context),
+              child: Icon(
+                Icons.arrow_back,
+              )),
+          SizedBox(
+            width: 10.0,
           ),
-          backgroundColor: Colors.grey[200],
-        ),
+          CircleAvatar(
+            radius: 20,
+            child: Icon(
+              Icons.person,
+              color: Colors.white,
+              size: 20,
+            ),
+            backgroundColor: Colors.grey[200],
+          ),
+          SizedBox(
+            width: 12.0,
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Divider(
+                height: 3,
+              ),
+              Text(
+                _chatModel.name,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              Text(
+                _chatModel.lastSeen,
+                style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w300,
+                    letterSpacing: 0.8),
+              )
+            ],
+          ),
+        ]),
         actions: [
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Column(
-                children: [
-                  Divider(
-                    height: 7,
-                  ),
-                  Text(
-                    _chatModel.name,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  Text(
-                    _chatModel.lastSeen,
-                    style: TextStyle(fontSize: 10, fontWeight: FontWeight.w100),
-                  )
-                ],
-              ),
+              // Column(
+              //   children: [
+              //     Divider(
+              //       height: 8,
+              //     ),
+              //     Text(
+              //       _chatModel.name,
+              //       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              //     ),
+              //     Text(
+              //       _chatModel.lastSeen,
+              //       style: TextStyle(fontSize: 10, fontWeight: FontWeight.w100),
+              //     )
+              //   ],
+              // ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8),
+                padding: EdgeInsets.symmetric(horizontal: 12),
               ),
               Icon(
                 Icons.videocam,
-                size: 20,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8),
-              ),
-              Icon(
-                Icons.call,
-                size: 20,
+                size: 25,
               ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 12),
               ),
+              Icon(
+                Icons.call,
+                size: 25,
+              ),
+              // Padding(
+              //   padding: EdgeInsets.symmetric(horizontal: 12),
+              // ),
               PopupMenuButton(
-                icon: Icon(Icons.more_vert),
+                icon: Icon(
+                  Icons.more_vert,
+                  size: 25.0,
+                ),
                 itemBuilder: (context) => <PopupMenuItem<String>>[
                   PopupMenuItem<String>(
                     child: Text('View Contact'),
@@ -134,9 +172,12 @@ class _ChatWithPersonState extends State<ChatWithPerson> {
               Divider(
                 height: 20,
               ),
-              Container(
-                  width: 330,
-                  height: 60,
+              Row(children: [
+                Container(
+                  width: MediaQuery.of(context).size.width - 75,
+                  margin: EdgeInsets.only(left: 5, bottom: 8.0),
+                  padding: EdgeInsets.symmetric(horizontal: 10.0),
+                  height: 50,
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(60)),
@@ -147,11 +188,17 @@ class _ChatWithPersonState extends State<ChatWithPerson> {
                         Icons.insert_emoticon,
                         color: Colors.grey,
                       ),
+                      SizedBox(
+                        width: 10.0,
+                      ),
                       Container(
                         width: 200,
                         child: TextField(
                           decoration: InputDecoration(
-                              labelText: 'Type a message',
+                              hintStyle: TextStyle(fontSize: 15),
+                              alignLabelWithHint: true,
+                              fillColor: Colors.blue,
+                              hintText: 'Type a message',
                               border: InputBorder.none),
                           controller: _textEditingController,
                           onChanged: (_) {
@@ -170,35 +217,70 @@ class _ChatWithPersonState extends State<ChatWithPerson> {
                           },
                         ),
                       ),
-                      Icon(
-                        Icons.attachment,
-                        color: Colors.grey,
+                      Spacer(),
+                      Transform.rotate(
+                        angle: 225 * pi / 180,
+                        child: Icon(
+                          Icons.attachment,
+                          color: Colors.grey,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10.0,
                       ),
                       Icon(
                         Icons.camera_alt,
                         color: Colors.grey,
-                      )
+                      ),
                     ],
-                  ))
+                  ),
+                ),
+                SizedBox(
+                  width: 8.0,
+                ),
+                Container(
+                  margin: EdgeInsets.only(right: 3.0, bottom: 8.0),
+                  width: 50,
+                  child: FloatingActionButton(
+                    elevation: 3,
+                    onPressed: () {
+                      if (_textEditingController.text.length != 0)
+                        _chatModel.addMessage(_textEditingController.text);
+                      _textEditingController.clear();
+                      setState(() {});
+                    },
+                    backgroundColor: Theme.of(context).primaryColor,
+                    child: Icon(
+                      _changeFloatingactionbutton &&
+                              _textEditingController.text.length != 0
+                          ? Icons.send
+                          : Icons.mic,
+                      size: 25.0,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ]),
             ],
           )
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          if(_textEditingController.text.length!=0)
-            _chatModel.addMessage(_textEditingController.text);
-          _textEditingController.clear();
-          setState(() {});
-        },
-        backgroundColor: Theme.of(context).primaryColor,
-        child: Icon(
-          _changeFloatingactionbutton && _textEditingController.text.length != 0
-              ? Icons.send
-              : Icons.mic,
-          color: Colors.white,
-        ),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   elevation: 3,
+      //   onPressed: () {
+      //     if (_textEditingController.text.length != 0)
+      //       _chatModel.addMessage(_textEditingController.text);
+      //     _textEditingController.clear();
+      //     setState(() {});
+      //   },
+      //   backgroundColor: Theme.of(context).primaryColor,
+      //   child: Icon(
+      //     _changeFloatingactionbutton && _textEditingController.text.length != 0
+      //         ? Icons.send
+      //         : Icons.mic,
+      //     color: Colors.white,
+      //   ),
+      // ),
     );
   }
 }
