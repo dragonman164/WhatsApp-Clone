@@ -1,8 +1,18 @@
-class ChatModel{
-  final String name,message,avatarUrl;
-  DateTime time;
-  ChatModel({this.name,this.message,this.time,this.avatarUrl});
+import 'package:flutter/foundation.dart';
 
+class ChatModel{
+  final String name,message,lastSeen;
+  DateTime time;
+  List<String>chatMessages;
+  ChatModel({@required this.name,
+    @required this.message,
+    @required this.time,
+    @required this.lastSeen,
+    @required this.chatMessages,
+  });
+  void addMessage(String text){
+    chatMessages.insert(0,text);
+  }
 
 }
 List<ChatModel> dummyData = [
@@ -10,30 +20,54 @@ List<ChatModel> dummyData = [
       name: "A",
       message: "Mai Chor Hoon",
       time : DateTime.now(),
-      avatarUrl: "https://opendatasecurity.io/wp-content/uploads/2017/05/can-you-hire-a-hacker-ods.jpg"
+    lastSeen: "Online",
+    chatMessages: [
+      "Hello, chor, kaisa hai??",
+      "Mai deekh hoon",
+    ]
   ),
   ChatModel(
       name: "B",
       message: "Mai Chor Hoon",
       time :  DateTime.now(),
-      avatarUrl: "https://opendatasecurity.io/wp-content/uploads/2017/05/can-you-hire-a-hacker-ods.jpg"
+      lastSeen: "Online",
+      chatMessages: [
+        "Hello, chor, kaisa hai??",
+        "Mai deekh hoon",
+      ]
+
   ),
   ChatModel(
       name: "C",
       message: "Mai Chor Hoon",
+      lastSeen: "Online",
       time :  DateTime.now(),
-      avatarUrl: "https://opendatasecurity.io/wp-content/uploads/2017/05/can-you-hire-a-hacker-ods.jpg"
+      chatMessages: [
+        "Hello, chor, kaisa hai??",
+        "Mai deekh hoon",
+      ]
+
   ),
   ChatModel(
       name: "D",
       message: "Mai Chor Hoon",
+      lastSeen: "Online",
       time :  DateTime.now(),
-      avatarUrl: "https://opendatasecurity.io/wp-content/uploads/2017/05/can-you-hire-a-hacker-ods.jpg"
+      chatMessages: [
+        "Hello, chor, kaisa hai??",
+        "Mai deekh hoon",
+      ]
+
   ),
   ChatModel(
       name: "E",
       message: "Mai Chor Hoon",
+      lastSeen: "Online",
       time : DateTime.now(),
-      avatarUrl: "https://opendatasecurity.io/wp-content/uploads/2017/05/can-you-hire-a-hacker-ods.jpg"
+      chatMessages: [
+        "Hello, chor, kaisa hai??",
+        "Mai deekh hoon",
+      ]
+
   )
 ];
