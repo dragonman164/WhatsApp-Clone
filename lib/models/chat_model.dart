@@ -4,11 +4,13 @@ class ChatModel{
   final String name,message,lastSeen;
   DateTime time;
   List<String>chatMessages;
+  var hasStatus = false;
   ChatModel({@required this.name,
     @required this.message,
     @required this.time,
     @required this.lastSeen,
     @required this.chatMessages,
+    this.hasStatus,
   });
   void addMessage(String text){
     chatMessages.insert(0,text);
@@ -24,7 +26,8 @@ List<ChatModel> dummyData = [
     chatMessages: [
       "Hello, chor, kaisa hai??",
       "Mai deekh hoon",
-    ]
+    ],
+    hasStatus: true,
   ),
   ChatModel(
       name: "B",
@@ -56,7 +59,9 @@ List<ChatModel> dummyData = [
       chatMessages: [
         "Hello, chor, kaisa hai??",
         "Mai deekh hoon",
-      ]
+
+      ],
+    hasStatus: true,
 
   ),
   ChatModel(

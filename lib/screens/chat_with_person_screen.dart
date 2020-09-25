@@ -40,7 +40,7 @@ class _ChatWithPersonState extends State<ChatWithPerson> {
     receiveArguments(context);
     return Scaffold(
       appBar: AppBar(
-        toolbarHeight: 55,
+//        toolbarHeight: 55,
         automaticallyImplyLeading: false,
         title: Row(mainAxisAlignment: MainAxisAlignment.start, children: [
           GestureDetector(
@@ -87,21 +87,6 @@ class _ChatWithPersonState extends State<ChatWithPerson> {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              // Column(
-              //   children: [
-              //     Divider(
-              //       height: 8,
-              //     ),
-              //     Text(
-              //       _chatModel.name,
-              //       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              //     ),
-              //     Text(
-              //       _chatModel.lastSeen,
-              //       style: TextStyle(fontSize: 10, fontWeight: FontWeight.w100),
-              //     )
-              //   ],
-              // ),
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 12),
               ),
@@ -192,7 +177,7 @@ class _ChatWithPersonState extends State<ChatWithPerson> {
                         width: 10.0,
                       ),
                       Container(
-                        width: 200,
+                        width: MediaQuery.of(context).size.width-200,
                         child: TextField(
                           decoration: InputDecoration(
                               hintStyle: TextStyle(fontSize: 15),
@@ -265,22 +250,7 @@ class _ChatWithPersonState extends State<ChatWithPerson> {
           )
         ],
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   elevation: 3,
-      //   onPressed: () {
-      //     if (_textEditingController.text.length != 0)
-      //       _chatModel.addMessage(_textEditingController.text);
-      //     _textEditingController.clear();
-      //     setState(() {});
-      //   },
-      //   backgroundColor: Theme.of(context).primaryColor,
-      //   child: Icon(
-      //     _changeFloatingactionbutton && _textEditingController.text.length != 0
-      //         ? Icons.send
-      //         : Icons.mic,
-      //     color: Colors.white,
-      //   ),
-      // ),
+
     );
   }
 }

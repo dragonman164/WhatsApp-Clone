@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/chat_model.dart';
+import 'package:intl/intl.dart';
 
 class CallsScreen extends StatelessWidget {
   @override
@@ -24,9 +25,15 @@ class CallsScreen extends StatelessWidget {
             ),
             subtitle: Container(
               padding: EdgeInsets.only(top: 5),
-              child: Text("${dummyData[index].time}",style: TextStyle(
-                  color: Colors.grey,fontSize: 15
-              ),),
+              child: Row(
+                children: [
+                  Icon(Icons.call_received,color: Colors.green,
+                  size: 20,),
+                  Text(DateFormat("MMMM dd, hh:mm a").format(dummyData[index].time),style: TextStyle(
+                      color: Colors.grey,fontSize: 15
+                  ),),
+                ],
+              ),
 
 
             ),

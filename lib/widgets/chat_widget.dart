@@ -13,7 +13,7 @@ class ChatWidget extends StatelessWidget {
         child: Text(messages),
       ),
       decoration: BoxDecoration(
-        color: Colors.lightGreen[300],
+        color: Colors.lightGreen[200],
         borderRadius: BorderRadius.circular(10),
       ),
       padding: EdgeInsets.fromLTRB(10, 7, 3, 10),

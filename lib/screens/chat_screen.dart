@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/chat_model.dart';
 import '../screens/chat_with_person_screen.dart';
+import 'package:intl/intl.dart';
 
 
 
@@ -28,7 +29,7 @@ class _ChatScreenState extends State<ChatScreen> {
               children: [
                 Text(dummyData[index].name,
                   style: TextStyle(fontWeight: FontWeight.bold),),
-                Text("${dummyData[index].time.hour}:${dummyData[index].time.minute}",
+                Text(DateFormat("hh:mm a").format(dummyData[index].time),
                     style: TextStyle(color: Colors.grey,fontSize: 14.0)),
               ],
             ),
