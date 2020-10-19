@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import '../screens/camera_screen.dart';
-import '../screens/call_screen.dart';
-import '../screens/chat_screen.dart';
-import '../screens/status_screen.dart';
+import '../widgets/camera_widget.dart';
+import '../widgets/call_widget.dart';
+import '../widgets/chatwidget.dart';
+import '../widgets/status_widget.dart';
+import '../screens/settings_screen.dart';
 
 class WhatsAppHome extends StatefulWidget {
   static String routeName = '/';
@@ -106,9 +107,13 @@ class _WhatsAppHomeState extends State<WhatsAppHome> with SingleTickerProviderSt
               ),
               PopupMenuItem<String>(
                 child:  Text('Settings'),
+                value: 'Settings',
               ),
             ],
-
+onSelected: (received) {
+              if(received == 'Settings')
+                Navigator.of(context).pushNamed(Settings.routeName);
+} ,
 
           )
 

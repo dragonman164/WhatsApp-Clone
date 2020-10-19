@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/chat_model.dart';
 import 'package:intl/intl.dart';
+import '../screens/call_with_person.dart';
 
 class CallsScreen extends StatelessWidget {
   @override
@@ -38,6 +39,9 @@ class CallsScreen extends StatelessWidget {
 
             ),
             trailing: Icon(Icons.call,color: Theme.of(context).primaryColor,),
+            onTap: () {
+            Navigator.of(context).pushNamed(CallWithPerson.routeName,arguments: {'chat':dummyData[index]});
+            },
           ),
         ],
       ) ,

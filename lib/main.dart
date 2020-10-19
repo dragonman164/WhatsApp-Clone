@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'screens/chat_with_person_screen.dart';
 import 'screens/home_screen.dart';
+import 'screens/call_with_person.dart';
+import 'screens/settings_screen.dart';
 
 void main() => runApp(new MyApp());
 
@@ -18,6 +20,9 @@ class MyApp extends StatelessWidget {
       routes: {
         WhatsAppHome.routeName: (context) => WhatsAppHome(),
         ChatWithPerson.routeName: (context) => ChatWithPerson(),
+        CallWithPerson.routeName:(context)=>CallWithPerson(),
+        Settings.routeName:(context)=> Settings(),
+
       },
     );
   }
