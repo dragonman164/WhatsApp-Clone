@@ -50,11 +50,13 @@ class Settings extends StatelessWidget {
                                 size: 30,),
                               ),
                               Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text('Account',
                                   style: TextStyle(
                                     fontSize: 17
-                                  ),),
+                                  ),
+                                  ),
                                   Divider(height: 5,),
                                   Text('Privacy, security, change number',
                                   style: TextStyle(
@@ -65,8 +67,6 @@ class Settings extends StatelessWidget {
                                   ),
                                 ],
                               ),
-
-
                             ],
 
                           ),
@@ -82,6 +82,7 @@ class Settings extends StatelessWidget {
                           size: 30,),
                       ),
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text('Chats',
                             style: TextStyle(
@@ -114,6 +115,7 @@ class Settings extends StatelessWidget {
                           size: 30,),
                       ),
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text('Notifications',
                             style: TextStyle(
@@ -146,6 +148,7 @@ class Settings extends StatelessWidget {
                           size: 30,),
                       ),
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text('Data and Storage usage',
                             style: TextStyle(
@@ -178,6 +181,7 @@ class Settings extends StatelessWidget {
                           size: 30,),
                       ),
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text('Help',
                             style: TextStyle(

@@ -3,7 +3,7 @@ import '../widgets/camera_widget.dart';
 import '../widgets/call_widget.dart';
 import '../widgets/chatwidget.dart';
 import '../widgets/status_widget.dart';
-import '../screens/settings_screen.dart';
+import '../widgets/PopUpMenuItems.dart';
 
 class WhatsAppHome extends StatefulWidget {
   static String routeName = '/';
@@ -17,16 +17,31 @@ class _WhatsAppHomeState extends State<WhatsAppHome> with SingleTickerProviderSt
   TextEditingController _textEditingController;
   var _searchPressed = false;
 
+
   void changeButton(){
    setState(() {
      switch(_tabController.index){
-       case 1: _currentButton=Icons.message; break;
+       case 1: _currentButton=Icons.message;break;
        case 2: _currentButton=Icons.camera_alt ; break;
        case 3: _currentButton=Icons.add_call; break;
      }
    });
 
   }
+
+  Widget changePopUpMenu (){
+
+      switch(_tabController.index){
+        case 1: return PopChats();  break;
+        case 2:  return PopStatus(); break;
+        case 3: return PopCalls(); break;
+      }
+      return Icon(Icons.more_vert);
+
+
+  }
+
+
 
   TabController _tabController;
 
@@ -35,6 +50,7 @@ class _WhatsAppHomeState extends State<WhatsAppHome> with SingleTickerProviderSt
     // TODO: implement initState
     super.initState();
     _tabController = TabController(vsync: this,length: 4);
+    _tabController.addListener(changePopUpMenu);
     _tabController.addListener(changeButton);
 
   }
@@ -91,31 +107,7 @@ class _WhatsAppHomeState extends State<WhatsAppHome> with SingleTickerProviderSt
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 5.0),
           ),
-          PopupMenuButton(
-            icon: Icon(Icons.more_vert),
-            itemBuilder: (context) => <PopupMenuItem<String>>[
-              PopupMenuItem<String>(
-                child: Text('New group'), ),
-              PopupMenuItem<String>(
-                child:  Text('New broadcast'),
-              ),
-              PopupMenuItem<String>(
-                child:  Text('WhatsApp Web'),
-              ),
-              PopupMenuItem<String>(
-                child:  Text('Starred Messages'),
-              ),
-              PopupMenuItem<String>(
-                child:  Text('Settings'),
-                value: 'Settings',
-              ),
-            ],
-onSelected: (received) {
-              if(received == 'Settings')
-                Navigator.of(context).pushNamed(Settings.routeName);
-} ,
-
-          )
+       changePopUpMenu(),
 
         ],
       ),

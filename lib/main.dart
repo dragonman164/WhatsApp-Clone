@@ -3,6 +3,7 @@ import 'screens/chat_with_person_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/call_with_person.dart';
 import 'screens/settings_screen.dart';
+import 'screens/status_privacy.dart';
 
 void main() => runApp(new MyApp());
 
@@ -22,6 +23,8 @@ class MyApp extends StatelessWidget {
         ChatWithPerson.routeName: (context) => ChatWithPerson(),
         CallWithPerson.routeName:(context)=>CallWithPerson(),
         Settings.routeName:(context)=> Settings(),
+        StatusPrivacy.routeName:(context)=>StatusPrivacy(),
+
 
       },
     );
